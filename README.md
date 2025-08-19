@@ -21,11 +21,49 @@ A WIP CLI tool to compress video files for the lowly Discord user.
 
 - `bash` shell environment
 - `ffmpeg` with `ffprobe` installed and accessible in your PATH
+- `curl` or `wget` (for installation script)
+
+## Installation
+
+### Manual Install
+
+Download the script and put it in your system executable path:
+
+```
+curl -Lo /usr/local/bin/discordify https://raw.githubusercontent.com/jackgraddon/discordify/main/discordify.sh && chmod +x /usr/local/bin/discordify
+```
+
+### Install via Script
+
+You can use the provided install script to install easily:
+
+```
+chmod +x install-discordify.sh
+sudo ./install-discordify.sh
+```
+
+The `install-discordify.sh` script downloads the latest `discordify.sh` to `/usr/local/bin/discordify` and sets executable permissions.
+
+### One-liner Install
+
+Run this command to download and run the installer in one step (requires sudo):
+
+Using `curl`:
+
+```
+curl -fsSL https://raw.githubusercontent.com/jackgraddon/discordify/main/install-discordify.sh | sudo bash
+```
+
+Or using `wget`:
+
+```
+wget -qO- https://raw.githubusercontent.com/jackgraddon/discordify/main/install-discordify.sh | sudo bash
+```
 
 ## Usage
 
 ```
-./discordify.sh video input_video_path [export_video_path] [-v|--verbose] [-f|--force]
+discordify video input_video_path [export_video_path] [-v|--verbose] [-f|--force]
 ```
 
 - `input_video_path`: Path to the input video file to compress.
@@ -33,30 +71,30 @@ A WIP CLI tool to compress video files for the lowly Discord user.
 - `-v` or `--verbose` *(optional)*: Show full ffmpeg output instead of progress dots.
 - `-f` or `--force` *(optional)*: Overwrite output file without prompting.
 
-### Examples
+## Examples
 
-1. Compress a video and save with default output filename:
+1. Compress a video with default output filename:
 
    ```
-   ./discordify.sh video myvideo.mp4
+   discordify video myvideo.mp4
    ```
 
 2. Compress with a custom output filename:
 
    ```
-   ./discordify.sh video myvideo.mp4 compressed_video.mp4
+   discordify video myvideo.mp4 compressed_video.mp4
    ```
 
 3. Compress with verbose ffmpeg output:
 
    ```
-   ./discordify.sh video myvideo.mp4 -v
+   discordify video myvideo.mp4 -v
    ```
 
 4. Force overwrite an existing output file without prompt:
 
    ```
-   ./discordify.sh video myvideo.mp4 -f
+   discordify video myvideo.mp4 -f
    ```
 
 ## Notes
@@ -65,9 +103,14 @@ A WIP CLI tool to compress video files for the lowly Discord user.
 - Audio bitrates are fixed at 128 kbps; video bitrate adjusts based on video duration.
 - By default, the output filename appends `_sharable` before the file extension.
 
+## Version
+
+Currently at version 0.1.0.
+
 ## License
 
 This project is a Work In Progress (WIP) and provided as-is without warranties.
 
 ---
+
 Built with ❤️ for Discord users who need manageable video sizes.
