@@ -1,2 +1,73 @@
 # discordify
-A WIP CLI tool to compress files for the lowly Discord user.
+
+A WIP CLI tool to compress video files for the lowly Discord user.
+
+## Overview
+
+`discordify` is a simple command-line script to compress videos to a maximum file size of 10MB—ideal for sharing on Discord, which has file size limits. It uses `ffmpeg` to re-encode videos with an optimized bitrate to meet this target, while preserving reasonable video quality.
+
+## Features
+
+- Compress any video to ≤10MB target size.
+- Automatically calculates required bitrate based on input video duration.
+- Saves output file with `_sharable` appended by default.
+- Option to specify custom output filename or path.
+- Progress bar with simple dot animation for non-verbose mode.
+- Verbose mode to show full ffmpeg output.
+- File overwrite warning with option to force overwrite.
+- Colorized terminal output for improved readability.
+
+## Requirements
+
+- `bash` shell environment
+- `ffmpeg` with `ffprobe` installed and accessible in your PATH
+
+## Usage
+
+```
+./discordify.sh video input_video_path [export_video_path] [-v|--verbose] [-f|--force]
+```
+
+- `input_video_path`: Path to the input video file to compress.
+- `export_video_path` *(optional)*: Custom path or filename for the compressed output.
+- `-v` or `--verbose` *(optional)*: Show full ffmpeg output instead of progress dots.
+- `-f` or `--force` *(optional)*: Overwrite output file without prompting.
+
+### Examples
+
+1. Compress a video and save with default output filename:
+
+   ```
+   ./discordify.sh video myvideo.mp4
+   ```
+
+2. Compress with a custom output filename:
+
+   ```
+   ./discordify.sh video myvideo.mp4 compressed_video.mp4
+   ```
+
+3. Compress with verbose ffmpeg output:
+
+   ```
+   ./discordify.sh video myvideo.mp4 -v
+   ```
+
+4. Force overwrite an existing output file without prompt:
+
+   ```
+   ./discordify.sh video myvideo.mp4 -f
+   ```
+
+## Notes
+
+- The script calculates the bitrate dynamically to fit the compressed video into a 10MB file size limit.
+- Audio bitrates are fixed at 128 kbps; video bitrate adjusts based on video duration.
+- By default, the output filename appends `_sharable` before the file extension.
+
+## License
+
+This project is a Work In Progress (WIP) and provided as-is without warranties.
+
+---
+Built with ❤️ for Discord users who need manageable video sizes.
