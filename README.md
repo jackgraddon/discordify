@@ -4,7 +4,8 @@ A WIP CLI tool to compress video files for the lowly Discord user.
 
 ## Overview
 
-`discordify` is a simple command-line script to compress videos to a maximum file size of 10MB—ideal for sharing on Discord, which has file size limits. It uses `ffmpeg` to re-encode videos with an optimized bitrate to meet this target, while preserving reasonable video quality.
+`discordify` is a simple command-line script to compress videos to a maximum file size of 10MB—ideal for sharing on Discord. It uses `ffmpeg` to re-encode videos with an optimized bitrate to meet this target, while preserving reasonable video quality. The script calculates the bitrate dynamically to fit the compressed video into a 10MB file size limit. Audio bitrates are fixed at 128 kbps; video bitrate adjusts based on video duration.
+
 
 ## Features
 
@@ -12,10 +13,6 @@ A WIP CLI tool to compress video files for the lowly Discord user.
 - Automatically calculates required bitrate based on input video duration.
 - Saves output file with `_sharable` appended by default.
 - Option to specify custom output filename or path.
-- Progress bar with simple dot animation for non-verbose mode.
-- Verbose mode to show full ffmpeg output.
-- File overwrite warning with option to force overwrite.
-- Colorized terminal output for improved readability.
 
 ## Requirements
 
@@ -96,12 +93,6 @@ discordify video input_video_path [export_video_path] [-v|--verbose] [-f|--force
    ```
    discordify video myvideo.mp4 -f
    ```
-
-## Notes
-
-- The script calculates the bitrate dynamically to fit the compressed video into a 10MB file size limit.
-- Audio bitrates are fixed at 128 kbps; video bitrate adjusts based on video duration.
-- By default, the output filename appends `_sharable` before the file extension.
 
 ## Version
 
